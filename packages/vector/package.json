@@ -1,0 +1,33 @@
+{
+  "name": "@bieb/vector",
+  "version": "0.0.0",
+  "description": "Vector math",
+  "keywords": [
+    "vector"
+  ],
+  "author": "Tim Severien <timseverien@gmail.com>",
+  "homepage": "https://github.com/timseverien/bieb/blob/packages/vector/README.md",
+  "license": "MIT",
+  "main": "lib/vector.cjs.js",
+  "umd:main": "lib/vector.umd.js",
+  "browser": "lib/vector.umd.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timseverien/bieb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timseverien/bieb/issues"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "glob": "^7.1.6"
+  }
+}
