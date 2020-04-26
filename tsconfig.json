@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
-    "sourceMap": true
+    "allowJs": false,
+    "declaration": true,
+    "sourceMap": true,
+    "target": "ES6",
   }
 }
