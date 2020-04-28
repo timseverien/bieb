@@ -1,22 +1,22 @@
 import assertArrayLikeMany from './utilities/assert-array-like-many';
 import assertEqualLength from './utilities/assert-equal-length';
+import assertOperator from './utilities/assert-operator';
 import IComponentWiseOperator from './types/component-wise-operator';
 import IVector from './types/vector';
 
-export default function componentWise(
-	a: IVector,
-	b: IVector,
-	operator: IComponentWiseOperator,
-	OutputType: IVector = a.constructor as IVector,
-): IVector {
-	assertArrayLikeMany(a, b);
-	assertEqualLength(a, b);
+export default function componentWise(operator: IComponentWiseOperator): Function {
+	assertOperator(operator);
 
-	const result = new OutputType(a.length);
+	return (a: IVector, b: IVector): IVector => {
+		assertArrayLikeMany(a, b);
+		assertEqualLength(a, b);
 
-	for (let i = 0; i < a.length; i++) {
-		result[i] = operator(a[i], b[i]);
+		const result = new Array<number>(a.length);
+
+		for (let i = 0; i < a.length; i++) {
+			result[i] = operator(a[i], b[i]);
+		}
+
+		return result;
 	}
-
-	return result;
 }
