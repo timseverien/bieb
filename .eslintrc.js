@@ -54,7 +54,7 @@ module.exports = {
 
 		// Jest tests
 		{
-			files: ['*.test.js'],
+			files: ['*.spec.js'],
 			env: {
 				jest: true,
 			},
