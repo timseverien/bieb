@@ -25,7 +25,8 @@
     "url": "https://github.com/timseverien/bieb/issues"
   },
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "dev": "rollup -cw"
   },
   "devDependencies": {
     "glob": "^7.1.6"

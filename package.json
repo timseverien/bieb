@@ -3,6 +3,7 @@
   "scripts": {
     "clean": "shx rm -rf packages/*/lib",
     "build": "npm run clean && lerna run build",
+    "dev": "lerna run --parallel dev",
     "publish": "lerna run build && lerna run test && lerna publish",
     "test": "run-s test:*",
     "test:lint": "eslint --ext js --ext ts .",
