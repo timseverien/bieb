@@ -1,4 +1,4 @@
-const multiply = require('./multiply').default;
+const { multiply } = require('./vector');
 
 describe('multiply', () => {
 	test('given two vectors returns a vector containing the sum of each component', () => {

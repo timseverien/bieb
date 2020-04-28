@@ -1,4 +1,4 @@
-const add = require('./add').default;
+const { add } = require('./vector');
 
 describe('add', () => {
 	test('given two vectors returns a vector containing the sum of each component', () => {

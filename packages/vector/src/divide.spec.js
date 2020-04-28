@@ -1,4 +1,4 @@
-const divide = require('./divide').default;
+const { divide } = require('./vector');
 
 describe('divide', () => {
 	test('given two vectors return a vector containing the sum of each component', () => {

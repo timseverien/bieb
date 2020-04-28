@@ -1,4 +1,4 @@
-const componentWise = require('./component-wise').default;
+const { componentWise } = require('./vector');
 
 describe('componentWise', () => {
 	test('given operator returns function', () => {

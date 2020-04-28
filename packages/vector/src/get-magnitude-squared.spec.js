@@ -1,4 +1,4 @@
-const getMagnitudeSquared = require('./get-magnitude-squared').default;
+const { getMagnitudeSquared } = require('./vector');
 
 describe('getMagnitudeSquared', () => {
 	test('given vector returns its magnitude', () => {

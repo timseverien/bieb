@@ -1,4 +1,4 @@
-const subtract = require('./subtract').default;
+const { subtract } = require('./vector');
 
 describe('subtract', () => {
 	test('given two vectors returns a vector containing the sum of each component', () => {
