@@ -1,12 +1,12 @@
-const assertArrayLike = require('./assert-array-like').default;
+const assertVector = require('./assert-vector').default;
 
-describe('assertArrayLike', () => {
+describe('assertVector', () => {
 	test('given vector returns true', () => {
 		// Arrange
 		const vector = [1, 2];
 
 		// Act
-		const result = assertArrayLike(vector);
+		const result = assertVector(vector);
 
 		// Assert
 		expect(result).toBe(true);
@@ -18,6 +18,6 @@ describe('assertArrayLike', () => {
 		[undefined],
 	], 'given invalid vector throws', (vector) => {
 		// Act + Assert
-		expect(() => assertArrayLike(vector)).toThrow('should be an Array or TypedArray');
+		expect(() => assertVector(vector)).toThrow('should be an Array or TypedArray');
 	});
 });

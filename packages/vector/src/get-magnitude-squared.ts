@@ -1,8 +1,8 @@
 import IVector from './types/vector';
-import assertArrayLike from './utilities/assert-array-like';
+import assertVector from './utilities/assert-vector';
 
 export default function getMagnitudeSquared(vector: IVector): number {
-	assertArrayLike(vector);
+	assertVector(vector);
 
 	let result = 0;
 
