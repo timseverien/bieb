@@ -1,4 +1,4 @@
-const subtract = require('../lib/subtract.cjs');
+const subtract = require('./subtract').default;
 
 describe('subtract', () => {
 	test('given two vectors returns a vector containing the sum of each component', () => {
@@ -13,24 +13,26 @@ describe('subtract', () => {
 		expect(result).toMatchObject([-1, -1, -1]);
 	});
 
-	test('given a non-array throws', () => {
-		// Arrange
-		const a = [1, 2, 3];
-		const b = '1, 2, 3';
-
+	test.each([
+		[[1, 2, 3], '[1, 2, 3]'],
+		[[1, 2, 3], null],
+		[[1, 2, 3], undefined],
+		['[1, 2, 3]', [1, 2, 3]],
+		[null, [1, 2, 3]],
+		[undefined, [1, 2, 3]],
+		['[1, 2, 3]', '[1, 2, 3]'],
+		[null, null],
+		[undefined, undefined],
+	])('given a non-array throws', (a, b) => {
 		// Act + Assert
-		expect(() => subtract(a, b)).toThrow('is not an Array or TypedArray');
-		expect(() => subtract(b, a)).toThrow('is not an Array or TypedArray');
-		expect(() => subtract(b, b)).toThrow('is not an Array or TypedArray');
+		expect(() => subtract(a, b)).toThrow('should be an Array or TypedArray');
 	});
 
-	test('given vectors with different sizes throws', () => {
-		// Arrange
-		const a = [1, 2, 3];
-		const b = [3, 4];
-
+	test.each([
+		[[1, 2, 3], [3, 4]],
+		[[3, 4], [1, 2, 3]],
+	])('given vectors with different sizes throws', (a, b) => {
 		// Act + Assert
 		expect(() => subtract(a, b)).toThrow('have different sizes');
-		expect(() => subtract(b, a)).toThrow('have different sizes');
 	});
 });

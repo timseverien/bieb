@@ -1,4 +1,4 @@
-const divide = require('../lib/divide.cjs');
+const divide = require('./divide').default;
 
 describe('divide', () => {
 	test('given two vectors return a vector containing the sum of each component', () => {
@@ -13,24 +13,26 @@ describe('divide', () => {
 		expect(result).toMatchObject([1, 2, 3]);
 	});
 
-	test('given a non-array throws', () => {
-		// Arrange
-		const a = [1, 2, 3];
-		const b = '1, 2, 3';
-
+	test.each([
+		[[1, 2, 3], '[1, 2, 3]'],
+		[[1, 2, 3], null],
+		[[1, 2, 3], undefined],
+		['[1, 2, 3]', [1, 2, 3]],
+		[null, [1, 2, 3]],
+		[undefined, [1, 2, 3]],
+		['[1, 2, 3]', '[1, 2, 3]'],
+		[null, null],
+		[undefined, undefined],
+	])('given a non-array throws', (a, b) => {
 		// Act + Assert
-		expect(() => divide(a, b)).toThrow('is not an Array or TypedArray');
-		expect(() => divide(b, a)).toThrow('is not an Array or TypedArray');
-		expect(() => divide(b, b)).toThrow('is not an Array or TypedArray');
+		expect(() => divide(a, b)).toThrow('should be an Array or TypedArray');
 	});
 
-	test('given vectors with different sizes throws', () => {
-		// Arrange
-		const a = [1, 2, 3];
-		const b = [3, 4];
-
+	test.each([
+		[[1, 2, 3], [3, 4]],
+		[[3, 4], [1, 2, 3]],
+	])('given vectors with different sizes throws', (a, b) => {
 		// Act + Assert
 		expect(() => divide(a, b)).toThrow('have different sizes');
-		expect(() => divide(b, a)).toThrow('have different sizes');
 	});
 });

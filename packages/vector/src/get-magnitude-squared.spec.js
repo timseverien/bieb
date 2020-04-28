@@ -1,4 +1,4 @@
-const getMagnitudeSquared = require('../lib/get-magnitude-squared.cjs');
+const getMagnitudeSquared = require('./get-magnitude-squared').default;
 
 describe('getMagnitudeSquared', () => {
 	test('given vector returns its magnitude', () => {
@@ -12,11 +12,12 @@ describe('getMagnitudeSquared', () => {
 		expect(result).toBe(32);
 	});
 
-	test('given a non-array throws', () => {
-		// Arrange
-		const v = '1, 2, 3';
-
+	test.each([
+		['[1, 2, 3]'],
+		[null],
+		[undefined],
+	])('given a non-array throws', (vector) => {
 		// Act + Assert
-		expect(() => getMagnitudeSquared(v)).toThrow('is not an Array or TypedArray');
+		expect(() => getMagnitudeSquared(vector)).toThrow('should be an Array or TypedArray');
 	});
 });

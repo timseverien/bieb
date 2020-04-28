@@ -1,4 +1,4 @@
-const componentWise = require('../lib/component-wise.cjs');
+const componentWise = require('./component-wise').default;
 
 describe('componentWise', () => {
 	test('given operator returns function', () => {
@@ -42,6 +42,16 @@ describe('componentWise', () => {
 		expect(result).toMatchObject([4, 6, 8]);
 	});
 
+	test.each([
+		[[1, 2, 3]],
+		[123],
+		[null],
+		[undefined],
+	])('given invalid operator throws', (operator) => {
+		// Act + Assert
+		expect(() => componentWise(operator)).toThrow('is not a function');
+	});
+
 	test('given vectors keeps original vectors intact', () => {
 		// Arrange
 		const a = [1, 2, 3];
@@ -55,5 +65,36 @@ describe('componentWise', () => {
 		// Assert
 		expect(a).toMatchObject([1, 2, 3]);
 		expect(b).toMatchObject([3, 4, 5]);
+	});
+
+	test.each([
+		[[1, 2, 3], '[1, 2, 3]'],
+		[[1, 2, 3], null],
+		[[1, 2, 3], undefined],
+		['[1, 2, 3]', [1, 2, 3]],
+		[null, [1, 2, 3]],
+		[undefined, [1, 2, 3]],
+		['[1, 2, 3]', '[1, 2, 3]'],
+		[null, null],
+		[undefined, undefined],
+	])('given a non-array throws', (a, b) => {
+		// Arrange
+		const operator = () => 0;
+		const apply = componentWise(operator);
+
+		// Act + Assert
+		expect(() => apply(a, b)).toThrow('should be an Array or TypedArray');
+	});
+
+	test.each([
+		[[1, 2, 3], [3, 4]],
+		[[3, 4], [1, 2, 3]],
+	])('given vectors with different sizes throws', (a, b) => {
+		// Arrange
+		const operator = () => 0;
+		const apply = componentWise(operator);
+
+		// Act + Assert
+		expect(() => apply(a, b)).toThrow('have different sizes');
 	});
 });
