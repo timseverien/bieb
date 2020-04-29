@@ -51,34 +51,4 @@ export default files.reduce((output, file) => {
 		...output,
 		...bundles,
 	];
-
-	// return [
-	// 	...output,
-
-	// 	{
-	// 		input: packageFile,
-	// 		output: {
-	// 			file: path.join(directoryDestination, `${packageName}.umd.js`),
-	// 			format: 'umd',
-	// 			name: packageName,
-	// 		},
-	// 		plugins,
-	// 	},
-
-	// 	...files.map((input) => {
-	// 		const outputFilename = path.basename(input, path.extname(input));
-
-	// 		return {
-	// 			input,
-	// 			output: [{
-	// 				file: path.join(directoryDestination, `${outputFilename}.esm.js`),
-	// 				format: 'es',
-	// 			}, {
-	// 				file: path.join(directoryDestination, `${outputFilename}.cjs.js`),
-	// 				format: 'cjs',
-	// 			}],
-	// 			plugins,
-	// 		};
-	// 	}),
-	// ];
 }, []);
