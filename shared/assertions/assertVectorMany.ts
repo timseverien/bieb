@@ -1,4 +1,4 @@
-import assertVector from './assert-vector';
+import assertVector from './assertVector';
 import IVector from '../types/vector';
 
 export default function assertVectorMany(...vectors: IVector[]): boolean {

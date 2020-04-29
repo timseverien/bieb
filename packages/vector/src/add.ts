@@ -1,3 +1,3 @@
-import componentWise from './component-wise';
+import componentWise from './componentWise';
 
 export default componentWise((a, b) => a + b);

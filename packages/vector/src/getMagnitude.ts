@@ -1,4 +1,4 @@
-import assertVector from '../../../shared/assertions/assert-vector';
+import assertVector from '../../../shared/assertions/assertVector';
 import IVector from '../../../shared/types/vector';
 
 export default function getMagnitude(vector: IVector): number {

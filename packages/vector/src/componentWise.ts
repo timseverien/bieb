@@ -1,7 +1,7 @@
-import assertVectorEqualSize from '../../../shared/assertions/assert-vector-equal-size';
-import assertVectorMany from '../../../shared/assertions/assert-vector-many';
-import assertVectorOperator from '../../../shared/assertions/assert-vector-operator';
-import IComponentWiseOperator from '../../../shared/types/component-wise-operator';
+import assertVectorEqualSize from '../../../shared/assertions/assertVectorEqualSize';
+import assertVectorMany from '../../../shared/assertions/assertVectorMany';
+import assertVectorOperator from '../../../shared/assertions/assertVectorOperator';
+import IComponentWiseOperator from '../../../shared/types/componentWiseOperator';
 import IVector from '../../../shared/types/vector';
 
 export default function componentWise(operator: IComponentWiseOperator): Function {

@@ -1,4 +1,4 @@
-import IComponentWiseOperator from '../types/component-wise-operator';
+import IComponentWiseOperator from '../types/componentWiseOperator';
 
 export default function assertVectorOperator(operator: IComponentWiseOperator): boolean {
 	if (typeof operator !== 'function') {
