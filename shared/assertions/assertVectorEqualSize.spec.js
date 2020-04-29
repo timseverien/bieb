@@ -1,7 +1,7 @@
-jest.mock('./assert-vector');
+jest.mock('./assertVector');
 
-const assertVector = require('./assert-vector').default;
-const assertVectorEqualSize = require('./assert-vector-equal-size').default;
+const assertVector = require('./assertVector').default;
+const assertVectorEqualSize = require('./assertVectorEqualSize').default;
 
 beforeEach(() => {
 	assertVector.mockReset();

@@ -1,7 +1,7 @@
-jest.mock('./assert-vector');
+jest.mock('./assertVector');
 
-const assertVectorMany = require('./assert-vector-many').default;
-const assertVector = require('./assert-vector').default;
+const assertVectorMany = require('./assertVectorMany').default;
+const assertVector = require('./assertVector').default;
 
 beforeEach(() => {
 	assertVector.mockReset();
