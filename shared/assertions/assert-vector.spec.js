@@ -20,4 +20,14 @@ describe('assertVector', () => {
 		// Act + Assert
 		expect(() => assertVector(vector)).toThrow('should be an Array or TypedArray');
 	});
+
+	test.each([
+		[[1, '0']],
+		[[1, {}]],
+		[[1, null]],
+		[[1, undefined]],
+	], 'given invalid vector values throws', (vector) => {
+		// Act + Assert
+		expect(() => assertVector(vector)).toThrow('should be a number');
+	});
 });

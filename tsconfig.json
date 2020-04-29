@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "declaration": true,
-    "sourceMap": true,
     "target": "ESNext"
   },
-  "files": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

@@ -1,19 +1,19 @@
 jest.mock('./assert-vector');
 
 const assertVector = require('./assert-vector').default;
-const assertEqualSize = require('./assert-equal-size').default;
+const assertVectorEqualSize = require('./assert-vector-equal-size').default;
 
 beforeEach(() => {
 	assertVector.mockReset();
 });
 
-describe('assertEqualSize', () => {
+describe('assertVectorEqualSize', () => {
 	test('given one vector throws', () => {
 		// Arrange
 		const vector = [1, 2];
 
 		// Act + Assert
-		expect(() => assertEqualSize(vector)).toThrow('Need at least two vectors to compare their lengths');
+		expect(() => assertVectorEqualSize(vector)).toThrow('Need at least two vectors to compare their lengths');
 	});
 
 	test('given vectors calls assertVector', () => {
@@ -23,7 +23,7 @@ describe('assertEqualSize', () => {
 		const c = [3, 4];
 
 		// Act
-		assertEqualSize(a, b, c);
+		assertVectorEqualSize(a, b, c);
 
 		// Assert
 		expect(assertVector).toHaveBeenCalledTimes(3);
@@ -36,7 +36,7 @@ describe('assertEqualSize', () => {
 		const c = [3, 4];
 
 		// Act
-		const result = assertEqualSize(a, b, c);
+		const result = assertVectorEqualSize(a, b, c);
 
 		// Assert
 		expect(result).toBe(true);
@@ -48,6 +48,6 @@ describe('assertEqualSize', () => {
 		const b = [2, 3, 4];
 
 		// Act + Assert
-		expect(() => assertEqualSize(a, b)).toThrow('have different sizes');
+		expect(() => assertVectorEqualSize(a, b)).toThrow('have different sizes');
 	});
 });

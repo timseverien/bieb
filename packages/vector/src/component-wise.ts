@@ -1,15 +1,15 @@
-import assertVectorMany from './utilities/assert-vector-many';
-import assertEqualSize from './utilities/assert-equal-size';
-import assertOperator from './utilities/assert-operator';
-import IComponentWiseOperator from './types/component-wise-operator';
-import IVector from './types/vector';
+import assertVectorEqualSize from '../../../shared/assertions/assert-vector-equal-size';
+import assertVectorMany from '../../../shared/assertions/assert-vector-many';
+import assertVectorOperator from '../../../shared/assertions/assert-vector-operator';
+import IComponentWiseOperator from '../../../shared/types/component-wise-operator';
+import IVector from '../../../shared/types/vector';
 
 export default function componentWise(operator: IComponentWiseOperator): Function {
-	assertOperator(operator);
+	assertVectorOperator(operator);
 
 	return (a: IVector, b: IVector): IVector => {
 		assertVectorMany(a, b);
-		assertEqualSize(a, b);
+		assertVectorEqualSize(a, b);
 
 		const result = new Array<number>(a.length);
 

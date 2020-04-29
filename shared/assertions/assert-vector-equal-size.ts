@@ -1,7 +1,7 @@
 import IVector from '../types/vector';
 import assertVectorMany from './assert-vector-many';
 
-export default function assertEqualSize(vector: IVector, ...vectors: IVector[]): boolean {
+export default function assertVectorEqualSize(vector: IVector, ...vectors: IVector[]): boolean {
 	assertVectorMany(vector, ...vectors);
 
 	const { length } = vector;

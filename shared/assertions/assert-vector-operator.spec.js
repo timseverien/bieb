@@ -1,13 +1,13 @@
-const assertOperator = require('./assert-operator').default;
+const assertVectorOperator = require('./assert-vector-operator').default;
 
-describe('assertOperator', () => {
+describe('assertVectorOperator', () => {
 	test.each([
 		['() => 0'],
 		[null],
 		[undefined],
 	])('given invalid operator throws', (operator) => {
 		// Act + Assert
-		expect(() => assertOperator(operator)).toThrow('is not a function');
+		expect(() => assertVectorOperator(operator)).toThrow('is not a function');
 	});
 
 	test('given operator returns true', () => {
@@ -15,7 +15,7 @@ describe('assertOperator', () => {
 		const operator = () => 0;
 
 		// Act
-		const result = assertOperator(operator);
+		const result = assertVectorOperator(operator);
 
 		// Assert
 		expect(result).toBe(true);

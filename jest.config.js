@@ -1,8 +1,8 @@
 module.exports = {
 	collectCoverage: true,
 	collectCoverageFrom: [
-		'packages/**/*.ts',
-		'!packages/**/types/*.ts',
+		'**/*.ts',
+		'!shared/types/*.ts',
 	],
 	transformIgnorePatterns: [
 		'\\.spec\\.js$',
