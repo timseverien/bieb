@@ -22,6 +22,7 @@ This is a library of stuff to support creative coders. Translating library to Du
 
 ## Roadmap / TODO
 
+- Add build pipeline (and publishing) on GitHub
 - Segment
 - Rectangle
 - Poisson disc sampling
