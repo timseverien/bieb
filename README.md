@@ -8,10 +8,6 @@
 | ------- | ----------- |
 | [@biep/vector](./packages/vector) | Vector math |
 
-## Examples
-
-Check out [examples](./examples/README.md).
-
 ## Rationale
 
 This repository is heavily inspired by [`@thi.ng/umbrella`](https://github.com/thi-ng/umbrella). Wheras `@thi.ng/umbrella` seems to focus on completion, @bieb aims to be easy to install and use and have a low footprint. Also, I get to reuse my own stuff and hopefully I’ll learn something.
