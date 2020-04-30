@@ -15,12 +15,3 @@ This repository is heavily inspired by [`@thi.ng/umbrella`](https://github.com/t
 ## What the hell does bieb mean?
 
 This is a library of stuff to support creative coders. Translating library to Dutch, we get ‘bibliotheek’ which is often shortened to ‘bieb’.
-
-## Roadmap / TODO
-
-- Segment
-- Rectangle
-- Poisson disc sampling
-- Evolutionary algorithm framework
-- Online examples
-- Make GitHub publish versions(?)
