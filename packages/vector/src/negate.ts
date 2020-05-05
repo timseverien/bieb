@@ -1,8 +1,6 @@
 import IVector from '../../../shared/types/vector';
-import assertVector from '../../../shared/assertions/assertVector';
+import multiplyScalar from './multiplyScalar';
 
 export default function negate(v: IVector): IVector {
-	assertVector(v);
-
-	return [...v].map((n) => -n);
+	return multiplyScalar(v, -1);
 };
