@@ -10,6 +10,7 @@ export { default as getMagnitude } from './getMagnitude';
 export { default as getMagnitudeSquared } from './getMagnitudeSquared';
 export { default as max } from './max';
 export { default as min } from './min';
+export { default as mix } from './mix';
 export { default as multiply } from './multiply';
 export { default as multiplyScalar } from './multiplyScalar';
 export { default as negate } from './negate';
