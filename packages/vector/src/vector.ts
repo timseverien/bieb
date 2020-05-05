@@ -10,5 +10,6 @@ export { default as getMagnitudeSquared } from './getMagnitudeSquared';
 export { default as multiply } from './multiply';
 export { default as multiplyScalar } from './multiplyScalar';
 export { default as negate } from './negate';
+export { default as normalize } from './normalize';
 export { default as subtract } from './subtract';
 export { default as subtractScalar } from './subtractScalar';
