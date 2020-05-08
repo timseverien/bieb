@@ -12,6 +12,14 @@ describe('assertVector', () => {
 		expect(result).toBe(true);
 	});
 
+	test('given vector with string component throws', () => {
+		// Arrange
+		const vector = [1, '2'];
+
+		// Act + Assert
+		expect(() => assertVector(vector)).toThrow('should be a number');
+	});
+
 	test.each([
 		['[1, 2]'],
 		[null],
