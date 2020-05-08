@@ -5,6 +5,7 @@ const commonRules = {
 		'error',
 		'tab'
 	],
+	'linebreak-style': ['error', 'unix'],
 	'no-plusplus': 0,
 	'no-tabs': 0,
 
