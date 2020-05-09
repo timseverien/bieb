@@ -1,7 +1,6 @@
 jest.mock('./assertVector');
 
-const assertVectorMany = require('./assertVectorMany').default;
-const assertVector = require('./assertVector').default;
+const { assertVector, assertVectorMany } = require('./vector');
 
 beforeEach(() => {
 	assertVector.mockReset();

@@ -1,4 +1,4 @@
-const assertVectorOperator = require('./assertVectorOperator').default;
+const { assertVectorOperator } = require('./vector');
 
 describe('assertVectorOperator', () => {
 	test.each([
