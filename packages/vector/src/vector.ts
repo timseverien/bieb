@@ -1,5 +1,11 @@
+export { default as IVector } from './types/vector';
+
 export { default as add } from './add';
 export { default as addScalar } from './addScalar';
+export { default as assertVector } from './assertVector';
+export { default as assertVectorEqualSize } from './assertVectorEqualSize';
+export { default as assertVectorMany } from './assertVectorMany';
+export { default as assertVectorOperator } from './assertVectorOperator';
 export { default as clamp } from './clamp';
 export { default as componentWise } from './componentWise';
 export { default as componentWiseScalar } from './componentWiseScalar';
