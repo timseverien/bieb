@@ -1,4 +1,4 @@
-const { assertNumber } = require('./core').default;
+const { assertNumber } = require('./core');
 
 describe('assertNumber', () => {
 	test('given number returns true', () => {
