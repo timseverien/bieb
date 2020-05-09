@@ -16,7 +16,6 @@ describe('assertNumber', () => {
 		['4'],
 		[[4]],
 		[{}],
-		[4n],
 		[null],
 		[undefined],
 	], 'given invalid number throws', (number) => {
