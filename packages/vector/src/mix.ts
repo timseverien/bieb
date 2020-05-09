@@ -1,4 +1,4 @@
-import { assertNumber } from '@bieb/core';
+import assertNumber from '@bieb/core/lib/assertNumber.esm';
 
 import assertVectorMany from './assertVectorMany';
 import IVector from './types/vector';
