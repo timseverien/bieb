@@ -35,6 +35,7 @@ export default function createRollupConfig(packageDirectory) {
 		input: path.join(packageDirectory, 'src', `${packageName}.ts`),
 		output: {
 			dir: 'lib',
+			entryFileNames: '[name].umd.js',
 			format: 'umd',
 			name: packageName,
 			sourcemap: true,
