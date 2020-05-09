@@ -1,0 +1,36 @@
+{
+  "name": "@bieb/box",
+  "version": "0.0.0",
+  "description": "Math with boxes",
+  "keywords": [
+    "bounding-box",
+    "boundingbox",
+    "box"
+  ],
+  "author": "Tim Severien <timseverien@gmail.com>",
+  "homepage": "https://github.com/timseverien/bieb/blob/packages/box/README.md",
+  "license": "MIT",
+  "main": "lib/box.cjs.js",
+  "umd:main": "lib/box.umd.js",
+  "browser": "lib/box.umd.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timseverien/bieb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timseverien/bieb/issues"
+  },
+  "dependencies": {
+    "@bieb/vector": "^0.0.0"
+  }
+}
