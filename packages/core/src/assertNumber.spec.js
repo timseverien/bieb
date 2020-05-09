@@ -18,7 +18,7 @@ describe('assertNumber', () => {
 		[{}],
 		[null],
 		[undefined],
-	], 'given invalid number throws', (number) => {
+	])('given invalid number throws', (number) => {
 		// Act + Assert
 		expect(() => assertNumber(number)).toThrow('should be a number');
 	});
