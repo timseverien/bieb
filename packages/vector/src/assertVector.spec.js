@@ -33,6 +33,7 @@ describe('assertVector', () => {
 
 	test.each([
 		['[1, 2]'],
+		[{ 0: 1, 1: 2 }],
 		[null],
 		[undefined],
 	])('given invalid vector throws', (vector) => {
