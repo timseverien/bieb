@@ -1,5 +1,5 @@
-import assertVector from '../../../shared/assertions/assertVector';
-import IVector from '../../../shared/types/vector';
+import assertVector from './assertVector';
+import IVector from './types/vector';
 
 export default function getMagnitudeSquared(vector: IVector): number {
 	assertVector(vector);

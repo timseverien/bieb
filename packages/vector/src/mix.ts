@@ -1,6 +1,7 @@
-import assertNumber from '../../../shared/assertions/assertNumber';
-import assertVectorMany from '../../../shared/assertions/assertVectorMany';
-import IVector from '../../../shared/types/vector';
+import { assertNumber } from '@bieb/core';
+
+import assertVectorMany from './assertVectorMany';
+import IVector from './types/vector';
 import componentWise from './componentWise';
 
 function createComponentMixer(t: number): Function {

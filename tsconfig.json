@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "target": "ESNext"
+    "declaration": true,
+    "declarationMap": true,
+    "target": "ESNext",
+
   },
   "include": ["**/*.ts"]
 }

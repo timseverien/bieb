@@ -1,5 +1,6 @@
-import assertNumber from '../../../shared/assertions/assertNumber';
-import IVector from '../../../shared/types/vector';
+import { assertNumber } from '@bieb/core';
+
+import IVector from './types/vector';
 
 export default function fromPolar(angle: number, radius = 1): IVector {
 	assertNumber(angle);

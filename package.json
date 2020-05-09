@@ -1,13 +1,14 @@
 {
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "npm run clean && lerna run build",
     "clean": "shx rm -rf packages/*/lib",
-    "build": "npm run clean && rollup -c",
-    "dev": "rollup -cw",
+    "dev": "lerna run --parallel dev",
     "publish": "lerna run build && lerna run test && lerna publish",
-    "test": "run-s test:*",
     "test:lint": "eslint --ext js --ext ts .",
-    "test:scripts": "jest"
+    "test:scripts": "jest",
+    "test": "run-s test:*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

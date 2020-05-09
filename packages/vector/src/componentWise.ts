@@ -1,10 +1,10 @@
-import assertVectorEqualSize from '../../../shared/assertions/assertVectorEqualSize';
-import assertVectorMany from '../../../shared/assertions/assertVectorMany';
-import assertVectorOperator from '../../../shared/assertions/assertVectorOperator';
-import IComponentWiseOperator from '../../../shared/types/componentWiseOperator';
-import IVector from '../../../shared/types/vector';
+import assertVectorEqualSize from './assertVectorEqualSize';
+import assertVectorMany from './assertVectorMany';
+import assertVectorOperator from './assertVectorOperator';
+import IVectorComponentWiseOperator from './types/vectorComponentWiseOperator';
+import IVector from './types/vector';
 
-export default function componentWise(operator: IComponentWiseOperator): Function {
+export default function componentWise(operator: IVectorComponentWiseOperator): Function {
 	assertVectorOperator(operator);
 
 	return (a: IVector, b: IVector): IVector => {

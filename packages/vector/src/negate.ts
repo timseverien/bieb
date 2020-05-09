@@ -1,4 +1,4 @@
-import IVector from '../../../shared/types/vector';
+import IVector from './types/vector';
 import multiplyScalar from './multiplyScalar';
 
 export default function negate(v: IVector): IVector {

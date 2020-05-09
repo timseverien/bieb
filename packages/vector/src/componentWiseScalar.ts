@@ -1,10 +1,11 @@
-import assertNumber from '../../../shared/assertions/assertNumber';
-import assertVector from '../../../shared/assertions/assertVector';
-import assertVectorOperator from '../../../shared/assertions/assertVectorOperator';
-import IComponentWiseOperator from '../../../shared/types/componentWiseOperator';
-import IVector from '../../../shared/types/vector';
+import { assertNumber } from '@bieb/core';
 
-export default function componentWise(operator: IComponentWiseOperator): Function {
+import assertVector from './assertVector';
+import assertVectorOperator from './assertVectorOperator';
+import IVectorComponentWiseOperator from './types/vectorComponentWiseOperator';
+import IVector from './types/vector';
+
+export default function componentWise(operator: IVectorComponentWiseOperator): Function {
 	assertVectorOperator(operator);
 
 	return (vector: IVector, scalar: number): IVector => {

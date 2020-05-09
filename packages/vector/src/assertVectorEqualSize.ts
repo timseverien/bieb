@@ -1,4 +1,4 @@
-import IVector from '../types/vector';
+import IVector from './types/vector';
 import assertVectorMany from './assertVectorMany';
 
 export default function assertVectorEqualSize(vector: IVector, ...vectors: IVector[]): boolean {

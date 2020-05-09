@@ -17,6 +17,10 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/timseverien/bieb.git"
@@ -24,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/timseverien/bieb/issues"
   },
-  "devDependencies": {
-    "glob": "^7.1.6"
+  "dependencies": {
+    "@bieb/core": "^0.0.0"
   }
 }

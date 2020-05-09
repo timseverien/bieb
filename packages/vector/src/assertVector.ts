@@ -1,5 +1,6 @@
-import assertNumber from './assertNumber';
-import IVector from '../types/vector';
+import { assertNumber } from '@bieb/core';
+
+import IVector from './types/vector';
 
 export default function assertVector(vector: IVector): boolean {
 	if (!Array.isArray(vector) && !ArrayBuffer.isView(vector)) {
