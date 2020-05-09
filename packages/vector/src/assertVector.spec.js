@@ -1,4 +1,4 @@
-const assertVector = require('./assertVector').default;
+const { assertVector } = require('./vector');
 
 describe('assertVector', () => {
 	test('given Array vector returns true', () => {
