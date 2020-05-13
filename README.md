@@ -6,6 +6,7 @@
 
 | Package | Description |
 | ------- | ----------- |
+| [@biep/box](./packages/box) | Math with boxes |
 | [@biep/vector](./packages/vector) | Vector math |
 
 ## Rationale
