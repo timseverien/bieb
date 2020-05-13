@@ -23,6 +23,6 @@ describe('getSize', () => {
 		[undefined],
 	])('given invalid box throws', (box) => {
 		// Act + Assert
-		expect(() => getSize(box)).toThrow('should be an IBox');
+		expect(() => getSize(box)).toThrow('should be a box');
 	});
 });

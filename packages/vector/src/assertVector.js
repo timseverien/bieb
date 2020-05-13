@@ -1,8 +1,6 @@
-import assertNumber from '@bieb/core/lib/assertNumber.esm';
+import assertNumber from '@bieb/core/src/assertNumber';
 
-import IVector from './types/vector';
-
-export default function assertVector(vector: IVector): boolean {
+export default function assertVector(vector) {
 	if (!Array.isArray(vector) && !ArrayBuffer.isView(vector)) {
 		throw new Error(`Vector ${vector} should be an Array or TypedArray`);
 	}

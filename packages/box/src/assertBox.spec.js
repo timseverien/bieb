@@ -23,7 +23,7 @@ describe('assertBox', () => {
 		};
 
 		// Act + Assert
-		expect(() => assertBox(box)).toThrow('should be an IBox');
+		expect(() => assertBox(box)).toThrow('should be a box');
 	});
 
 	test('given box with min and max of different sizes throws', () => {
@@ -34,7 +34,7 @@ describe('assertBox', () => {
 		};
 
 		// Act + Assert
-		expect(() => assertBox(box)).toThrow('should be an IBox');
+		expect(() => assertBox(box)).toThrow('should be a box');
 	});
 
 	test.each([
@@ -45,6 +45,6 @@ describe('assertBox', () => {
 		[undefined],
 	])('given invalid box throws', (box) => {
 		// Act + Assert
-		expect(() => assertBox(box)).toThrow('should be an IBox');
+		expect(() => assertBox(box)).toThrow('should be a box');
 	});
 });

@@ -57,7 +57,7 @@ describe('contains', () => {
 		const vector = [1, 2];
 
 		// Act + Assert
-		expect(() => contains(box, vector)).toThrow('should be an IBox');
+		expect(() => contains(box, vector)).toThrow('should be a box');
 	});
 
 	test.each([

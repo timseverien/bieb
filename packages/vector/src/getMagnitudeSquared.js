@@ -1,7 +1,6 @@
 import assertVector from './assertVector';
-import IVector from './types/vector';
 
-export default function getMagnitudeSquared(vector: IVector): number {
+export default function getMagnitudeSquared(vector) {
 	assertVector(vector);
 
 	let result = 0;

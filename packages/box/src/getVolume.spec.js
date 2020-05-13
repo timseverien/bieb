@@ -33,6 +33,6 @@ describe('getVolume', () => {
 		[{ min: 0, max: 0 }],
 	])('given invalid box should throw', (box) => {
 		// Act + Assert
-		expect(() => getVolume(box)).toThrow('should be an IBox');
+		expect(() => getVolume(box)).toThrow('should be a box');
 	});
 });

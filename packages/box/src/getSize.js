@@ -1,9 +1,6 @@
-import IVector from '@bieb/vector/lib/src/vector';
-
 import assertBox from './assertBox';
-import IBox from './types/box';
 
-export default function getSize(box: IBox): IVector {
+export default function getSize(box) {
 	assertBox(box);
 
 	const result = new Array(box.min.length);

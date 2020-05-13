@@ -1,7 +1,6 @@
-import IBox from './types/box';
 import assertBox from './assertBox';
 
-export default function getVolume(box: IBox): number {
+export default function getVolume(box) {
 	assertBox(box);
 
 	const dimensions = box.min.length;

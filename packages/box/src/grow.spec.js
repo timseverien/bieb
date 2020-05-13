@@ -63,7 +63,7 @@ describe('grow', () => {
 		const vector = [1, 2];
 
 		// Act + Assert
-		expect(() => grow(box, vector)).toThrow('should be an IBox');
+		expect(() => grow(box, vector)).toThrow('should be a box');
 	});
 
 	test.each([

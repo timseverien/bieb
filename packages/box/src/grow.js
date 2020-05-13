@@ -1,12 +1,10 @@
-import assertVector from '@bieb/vector/lib/assertVector.esm';
-import assertVectorEqualSize from '@bieb/vector/lib/assertVectorEqualSize.esm';
-import IVector from '@bieb/vector/lib/src/types/vector.esm';
+import assertVector from '@bieb/vector/src/assertVector';
+import assertVectorEqualSize from '@bieb/vector/src/assertVectorEqualSize';
 
 import assertBox from './assertBox';
 import create from './create';
-import IBox from './types/box';
 
-export default function grow(box: IBox, vector: IVector): IBox {
+export default function grow(box, vector) {
 	assertBox(box);
 	assertVector(vector);
 	assertVectorEqualSize(box.max, vector);

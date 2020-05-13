@@ -4,10 +4,8 @@ import path from 'path';
 import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
 
 const plugins = [
-	typescript(),
 	commonjs(),
 	nodeResolve(),
 	terser(),
@@ -15,7 +13,7 @@ const plugins = [
 
 export default function createRollupConfig(packageDirectory) {
 	const packageName = path.basename(packageDirectory);
-	const inputFiles = glob.sync(path.join(packageDirectory, 'src', '*.ts'));
+	const inputFiles = glob.sync(path.join(packageDirectory, 'src', '*.js'));
 
 	return [{
 		input: inputFiles,
@@ -32,7 +30,7 @@ export default function createRollupConfig(packageDirectory) {
 		}],
 		plugins,
 	}, {
-		input: path.join(packageDirectory, 'src', `${packageName}.ts`),
+		input: path.join(packageDirectory, 'src', `${packageName}.js`),
 		output: {
 			dir: 'lib',
 			entryFileNames: '[name].umd.js',

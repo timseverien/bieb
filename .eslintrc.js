@@ -33,26 +33,6 @@ module.exports = {
 	rules: commonRules,
 
 	overrides: [
-		// Typescript
-		{
-			files: ['*.ts'],
-			parser: '@typescript-eslint/parser',
-			plugins: ['@typescript-eslint'],
-			extends: [
-				'eslint-config-airbnb',
-				'plugin:@typescript-eslint/eslint-recommended',
-				'plugin:@typescript-eslint/recommended'
-			],
-			rules: {
-				...commonRules,
-
-				'@typescript-eslint/interface-name-prefix': 0,
-				'@typescript-eslint/no-use-before-define': 0,
-				'no-extra-semi': 0,
-				semi: 0,
-			},
-		},
-
 		// Jest tests
 		{
 			files: ['*.spec.js'],

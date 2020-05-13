@@ -1,5 +1,3 @@
-export { default as IVector } from './types/vector';
-
 export { default as add } from './add';
 export { default as addScalar } from './addScalar';
 export { default as assertVector } from './assertVector';
