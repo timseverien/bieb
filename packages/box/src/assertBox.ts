@@ -1,4 +1,5 @@
 import assertVector from '@bieb/vector/lib/assertVector.esm';
+import assertVectorEqualSize from '@bieb/vector/lib/assertVectorEqualSize.esm';
 
 import IBox from './types/box';
 
@@ -15,6 +16,7 @@ export default function assertBox(box: IBox): boolean {
 	try {
 		assertVector(box.max);
 		assertVector(box.min);
+		assertVectorEqualSize(box.max, box.min);
 	} catch {
 		throw new Error(`Box "${box}" should be an IBox`);
 	}

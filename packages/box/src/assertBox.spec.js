@@ -1,7 +1,7 @@
 const { assertBox } = require('./box');
 
 describe('assertBox', () => {
-	test('given box should return true', () => {
+	test('given box returns true', () => {
 		// Arrange
 		const box = {
 			min: [0, 0],
@@ -13,6 +13,28 @@ describe('assertBox', () => {
 
 		// Assert
 		expect(result).toBe(true);
+	});
+
+	test('given box with min and max of different sizes throws', () => {
+		// Arrange
+		const box = {
+			min: [1, 1, 1],
+			max: [2, 2],
+		};
+
+		// Act + Assert
+		expect(() => assertBox(box)).toThrow('should be an IBox');
+	});
+
+	test('given box with min and max of different sizes throws', () => {
+		// Arrange
+		const box = {
+			min: [1, 1, 1],
+			max: [2, 2],
+		};
+
+		// Act + Assert
+		expect(() => assertBox(box)).toThrow('should be an IBox');
 	});
 
 	test.each([
