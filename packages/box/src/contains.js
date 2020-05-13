@@ -15,4 +15,4 @@ export default function contains(box, vector) {
 	}
 
 	return true;
-};
+}

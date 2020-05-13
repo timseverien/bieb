@@ -11,4 +11,4 @@ export default function getVolume(box) {
 	}
 
 	return volume;
-};
+}

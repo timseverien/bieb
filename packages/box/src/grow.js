@@ -17,4 +17,4 @@ export default function grow(box, vector) {
 	}
 
 	return result;
-};
+}
