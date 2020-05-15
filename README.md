@@ -1,4 +1,4 @@
-# @bieb
+# @bieb ![build](https://github.com/timseverien/bieb/workflows/Continuous%20Integration/badge.svg)
 
 @bieb is a collection of JavaScript packages for creative coders who work in browsers or node.js.
 
