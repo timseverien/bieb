@@ -1,6 +1,6 @@
 {
   "name": "@bieb/vector",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "Vector math",
   "keywords": [
     "vector"
@@ -29,6 +29,6 @@
     "url": "https://github.com/timseverien/bieb/issues"
   },
   "dependencies": {
-    "@bieb/core": "^0.0.0"
+    "@bieb/core": "^1.0.0-alpha.0"
   }
 }

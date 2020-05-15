@@ -1,6 +1,6 @@
 {
   "name": "@bieb/box",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "Math with boxes",
   "keywords": [
     "bounding-box",
@@ -31,6 +31,6 @@
     "url": "https://github.com/timseverien/bieb/issues"
   },
   "dependencies": {
-    "@bieb/vector": "^0.0.0"
+    "@bieb/vector": "^1.0.0-alpha.0"
   }
 }
