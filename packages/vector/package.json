@@ -21,6 +21,9 @@
     "build": "rollup -c",
     "dev": "rollup -cw"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/timseverien/bieb.git"
