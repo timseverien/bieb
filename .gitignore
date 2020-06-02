@@ -1,3 +1,4 @@
+examples/scripts/packages
 packages/*/lib
 
 # Logs
