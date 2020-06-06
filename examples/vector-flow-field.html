@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@bieb/vector - Flow Field</title>
+
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+	<main class="center">
+		<h1 class="visually-hidden">@bieb/vector - Flow Field</h1>
+		<canvas id="canvas"></canvas>
+	</main>
+
+	<script type="module">
+		import * as Vector from './scripts/packages/vector/vector.esm.js';
+
+		const canvas = document.getElementById('canvas');
+		const context = canvas.getContext('2d');
+		const pixelRatio = window.devicePixelRatio;
+
+		const canvasSize = 512 * pixelRatio;
+
+		const cellSize = 32 * pixelRatio;
+		const cellSizeHalf = Vector.multiplyScalar([cellSize, cellSize], 0.5);
+
+		const cellCountPerAxis = canvasSize / cellSize;
+		const cellCount = cellCountPerAxis ** 2;
+
+		const arrowLength = cellSize / 3;
+		const arrowPointAngle = Math.PI * 3 / 4;
+		const arrowPointLength = cellSize / 4;
+
+		canvas.height = canvasSize;
+		canvas.width = canvasSize;
+
+		canvas.style.height = `${canvasSize / pixelRatio}px`;
+		canvas.style.width = `${canvasSize / pixelRatio}px`;
+
+		context.lineCap = 'round';
+		context.lineJoin = 'round';
+		context.lineWidth = 8;
+
+		for (let i = 0; i < cellCount; i++) {
+			const center = Vector.add(cellSizeHalf, [
+				cellSize * (i % cellCountPerAxis),
+				cellSize * Math.trunc(i / cellCountPerAxis),
+			]);
+
+			const [x, y] = Vector.subtractScalar(Vector.multiplyScalar(Vector.divideScalar(center, canvasSize), 2), 1);
+
+			const angle = -0.5 * Math.PI + Math.PI * x * y;
+			const arrowTail = Vector.subtract(center, Vector.fromPolar(angle, arrowLength));
+			const arrowPoint = Vector.add(center, Vector.fromPolar(angle, arrowLength));
+			const arrowPointLeft = Vector.add(arrowPoint, Vector.fromPolar(angle + arrowPointAngle, arrowPointLength));
+			const arrowPointRight = Vector.add(arrowPoint, Vector.fromPolar(angle - arrowPointAngle, arrowPointLength));
+
+			context.beginPath();
+
+			context.moveTo(...arrowTail);
+			context.lineTo(...arrowPoint);
+
+			context.moveTo(...arrowPointLeft);
+			context.lineTo(...arrowPoint);
+			context.lineTo(...arrowPointRight);
+
+			context.strokeStyle = `hsl(${90 * angle}, 100%, 40%)`;
+			context.stroke();
+		}
+	</script>
+
+</body>
+</html>
