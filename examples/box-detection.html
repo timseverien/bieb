@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@bieb/box - Detecion</title>
+
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+	<main class="center">
+		<h1 class="visually-hidden">@bieb/box - Detecion</h1>
+		<div class="canvas-container">
+			<canvas id="canvas"></canvas>
+		</div>
+	</main>
+
+	<script type="module">
+		import * as Vector from './scripts/packages/vector/vector.esm.js';
+		import * as Box from './scripts/packages/box/box.esm.js';
+
+		function createBox2DFromCenter(center, size) {
+			return Box.create(
+				Vector.subtractScalar(center, 0.5 * boxSize),
+				Vector.addScalar(center, 0.5 * boxSize),
+			);
+		}
+
+		function getBox2DVertices(box) {
+			return [
+				// Top left
+				[...box.min],
+				// Top right
+				[box.max[0], box.min[1]],
+				// Bottom left
+				[box.min[0], box.max[1]],
+				// Bottom right
+				[...box.max],
+			];
+		}
+
+		function isBox2DInsideBox2D(a, b) {
+			return getBox2DVertices(a).every((vertex) => Box.contains(b, vertex));
+		}
+
+		function isBox2DCollidingWithBox2D(a, b) {
+			return getBox2DVertices(a).some((vertex) => Box.contains(b, vertex));
+		}
+
+		function renderBox(context, box, { isColliding } = {}) {
+			const [sizeX, sizeY] = Box.getSize(box);
+
+			context.strokeStyle = isColliding ? 'red' : 'black';
+			context.strokeRect(...box.min, sizeX, sizeY);
+		}
+
+		const canvas = document.getElementById('canvas');
+		const context = canvas.getContext('2d');
+		const pixelRatio = window.devicePixelRatio;
+
+		const canvasSize = 512 * pixelRatio;
+
+		canvas.height = canvasSize;
+		canvas.width = canvasSize;
+
+		canvas.style.height = `${canvasSize / pixelRatio}px`;
+		canvas.style.width = `${canvasSize / pixelRatio}px`;
+
+		const boxSize = canvasSize / 5;
+
+		const boxCanvas = Box.create([0, 0], [canvasSize, canvasSize]);
+		const canvasCenter = Vector.mix(boxCanvas.min, boxCanvas.max, 0.5);
+
+		const boxCenter = createBox2DFromCenter(canvasCenter, boxSize);
+
+		context.lineCap = 'round';
+		context.lineJoin = 'round';
+		context.lineWidth = 8;
+
+		const render = (position = [0.5 * canvasSize, 0.5 * canvasSize]) => {
+			const boxUser = createBox2DFromCenter(position, boxSize);
+			const isUserBoxCollidingWithCenterBox = isBox2DCollidingWithBox2D(boxCenter, boxUser);
+			const isUserBoxOutsideCanvas = !isBox2DInsideBox2D(boxUser, boxCanvas);
+
+			context.clearRect(0, 0, canvasSize, canvasSize);
+
+			renderBox(context, boxCenter, {
+				isColliding: isUserBoxCollidingWithCenterBox,
+			});
+
+			renderBox(context, boxUser, {
+				isColliding: isUserBoxOutsideCanvas || isUserBoxCollidingWithCenterBox,
+			});
+		};
+
+		render();
+
+		canvas.addEventListener('pointermove', (event) => {
+			const rect = event.target.getBoundingClientRect();
+			const x = event.clientX - rect.left;
+			const y = event.clientY - rect.top;
+
+			render(Vector.multiplyScalar([x, y], pixelRatio));
+		});
+	</script>
+
+</body>
+
+</html>
