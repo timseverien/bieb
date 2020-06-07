@@ -1,2 +1,3 @@
+examples/scripts/packages
 node_modules
 packages/*/lib
