@@ -42,12 +42,12 @@
 			];
 		}
 
-		function isBox2DInsideBox2D(a, b) {
-			return getBox2DVertices(a).every((vertex) => Box.contains(b, vertex));
-		}
-
 		function isBox2DCollidingWithBox2D(a, b) {
 			return getBox2DVertices(a).some((vertex) => Box.contains(b, vertex));
+		}
+
+		function isBox2DInsideBox2D(a, b) {
+			return getBox2DVertices(a).every((vertex) => Box.contains(b, vertex));
 		}
 
 		function renderBox(context, box, { isColliding } = {}) {
