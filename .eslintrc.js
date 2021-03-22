@@ -3,7 +3,7 @@ const commonRules = {
 	'import/no-unresolved': 0,
 	indent: [
 		'error',
-		'tab'
+		'tab',
 	],
 	'linebreak-style': ['error', 'unix'],
 	'no-plusplus': 0,
@@ -25,7 +25,7 @@ const commonRules = {
 module.exports = {
 	root: true,
 	env: {
-		node: true
+		node: true,
 	},
 	extends: [
 		'eslint-config-airbnb',
@@ -39,6 +39,6 @@ module.exports = {
 			env: {
 				jest: true,
 			},
-		}
-	]
-}
+		},
+	],
+};

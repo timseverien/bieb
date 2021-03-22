@@ -1,5 +1,6 @@
 import glob from 'globby';
 import path from 'path';
+import slash from 'slash';
 
 import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
@@ -13,7 +14,7 @@ const plugins = [
 
 export default function createRollupConfig(packageDirectory) {
 	const packageName = path.basename(packageDirectory);
-	const inputFiles = glob.sync(path.join(packageDirectory, 'src', '*.js'));
+	const inputFiles = glob.sync(slash(path.join(packageDirectory, 'src', '*.js')));
 
 	return [{
 		input: inputFiles,
@@ -40,4 +41,4 @@ export default function createRollupConfig(packageDirectory) {
 		},
 		plugins,
 	}];
-};
+}
