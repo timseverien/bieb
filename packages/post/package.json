@@ -1,0 +1,40 @@
+{
+  "name": "@bieb/post",
+  "version": "1.0.1",
+  "description": "WebGL post-processing for lazy people",
+  "keywords": [
+    "post-processing",
+    "post",
+    "webgl"
+  ],
+  "author": "Tim Severien <timseverien@gmail.com>",
+  "homepage": "https://github.com/timseverien/bieb/blob/packages/vector/README.md",
+  "license": "MIT",
+  "main": "lib/post.cjs.js",
+  "umd:main": "lib/post.umd.js",
+  "browser": "lib/post.umd.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timseverien/bieb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timseverien/bieb/issues"
+  },
+  "dependencies": {
+    "@bieb/core": "^1.0.0",
+    "regl": "^2.1.0"
+  }
+}

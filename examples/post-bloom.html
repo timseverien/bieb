@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@bieb/post - Colour Grading</title>
+
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+	<main class="center">
+		<h1 class="visually-hidden">@bieb/post - Colour Grading</h1>
+		<div class="canvas-container">
+			<canvas id="canvas"></canvas>
+		</div>
+	</main>
+
+	<script type="module">
+		import * as Box from './scripts/packages/box/box.esm.js';
+		import * as Post from './scripts/packages/post/post.esm.js';
+		import * as Vector from './scripts/packages/vector/vector.esm.js';
+
+		const canvas = document.getElementById('canvas');
+		const context = canvas.getContext('2d');
+		const pixelRatio = window.devicePixelRatio;
+
+		const canvasSize = 512 * pixelRatio;
+
+		canvas.height = canvasSize;
+		canvas.width = canvasSize;
+
+		canvas.style.height = `${canvasSize / pixelRatio}px`;
+		canvas.style.width = `${canvasSize / pixelRatio}px`;
+
+		const boxSize = canvasSize / 3;
+		const boxColors = [
+			'#f00',
+			'#0f0',
+			'#00f',
+		];
+
+		const boxCanvas = Box.create([0, 0], [canvasSize, canvasSize]);
+		const canvasCenter = Vector.mix(boxCanvas.min, boxCanvas.max, 0.5);
+
+		const boxCount = 3;
+
+		const post = Post.createPostProcess();
+
+		post.add();
+
+		const render = () => {
+			const time = Date.now() / 1000;
+
+			context.fillStyle = 'black';
+			context.fillRect(0, 0, canvasSize, canvasSize);
+
+			for (let i = 0; i < boxCount; i++) {
+				const t = i / boxCount;
+				const [x, y] = Vector.subtract(
+					Vector.add(canvasCenter, Vector
+						.fromPolar(2 * Math.PI * (time / 8 + t), canvasSize / 5)),
+					Vector.multiplyScalar([boxSize, boxSize], 0.5),
+				);
+
+				context.fillStyle = boxColors[i];
+				context.fillRect(x, y, boxSize, boxSize);
+
+				post.render(canvas);
+
+				canvas.drawImage(post.canvas, 0, 0);
+			}
+		};
+
+		const update = () => {
+			render();
+			requestAnimationFrame(update);
+		};
+
+		update();
+	</script>
+
+</body>
+
+</html>
