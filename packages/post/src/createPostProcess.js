@@ -1,135 +1,37 @@
-/* globals document */
-const createRegl = require('regl');
+import { CanvasTexture } from 'three/src/textures/CanvasTexture';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { TexturePass } from 'three/examples/jsm/postprocessing/TexturePass';
+import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer';
 
-const attributePositionData = [
-	[-1, -1],
-	[1, -1],
-	[1, 1],
+export default function createPostProcess({ sourceCanvas } = {}) {
+	const renderer = new WebGLRenderer();
+	const texture = new CanvasTexture(sourceCanvas);
 
-	[-1, -1],
-	[1, 1],
-	[-1, 1],
-];
+	const composer = new EffectComposer(renderer);
+	composer.addPass(new TexturePass(texture));
 
-const attributeUvData = [
-	[0, 0],
-	[1, 0],
-	[1, 1],
-
-	[0, 0],
-	[1, 1],
-	[0, 1],
-];
-
-const shaderCopyFragment = `
-	precision highp float;
-
-	uniform sampler2D uDiffuse;
-	varying vec2 vUv;
-
-	void main() {
-		gl_FragColor = texture2D(uDiffuse, vUv);
-	}
-`;
-
-const shaderCopyVertex = `
-	attribute vec2 position;
-	attribute vec2 uv;
-
-	varying vec2 vUv;
-
-	void main() {
-		vUv = uv;
-
-		gl_Position = vec4(position, 0, 1);
-	}
-`;
-
-export default function createPostProcess({
-	canvas = document.createElement('canvas'),
-	context = canvas.getContext('webgl'),
-} = {}) {
-	const regl = createRegl(context || canvas);
-
-	const attributePositionBuffer = regl.buffer(attributePositionData);
-	const attributeUvBuffer = regl.buffer(attributeUvData);
-
-	const renderBufferOptions = {
-		height: canvas.height,
-		width: canvas.width,
-	};
-
-	const renderBuffers = [
-		regl.renderbuffer(renderBufferOptions),
-		regl.renderbuffer(renderBufferOptions),
-	];
-
-	const reglOptions = {
-		vert: shaderCopyVertex,
-
-		attributes: {
-			position: attributePositionBuffer,
-			uv: attributeUvBuffer,
-		},
-
-		count: 6,
-	};
-
-	// const texture =
-	// TODO: create texture
-
-	const copyToScreen = regl({
-		...reglOptions,
-		frag: shaderCopyFragment,
-
-		uniforms: {
-			uDiffuse: { value: null },
-		},
-	});
-
-	let isDestroyed = false;
+	renderer.setSize(sourceCanvas.width, sourceCanvas.height);
+	composer.setSize(sourceCanvas.width, sourceCanvas.height);
 
 	return {
-		canvas,
-		context,
-
-		commands: [],
-		passes: [],
+		canvas: renderer.domElement,
 
 		add(pass) {
-			this.passes.push(pass);
+			const { height, width } = sourceCanvas;
+			const threePass = pass({
+				height,
+				width,
+			});
 
-			this.commands.push(regl({
-				...reglOptions,
-				frag: pass.shader,
-				framebuffer: this.commands.length % this.renderbuffer.length,
-			}));
+			composer.addPass(threePass);
+
+			return threePass;
 		},
 
-		destroy() {
-			isDestroyed = true;
+		render() {
+			texture.needsUpdate = true;
 
-			for (const rb of renderBuffers) {
-				rb.destroy();
-			}
-		},
-
-		render(image) {
-			if (isDestroyed) {
-				throw new Error('This post process instance is destroyed.');
-			}
-
-			for (const command of this.commands) {
-				command();
-			}
-
-			copyToScreen();
-
-			return canvas;
-
-			// TODO: convert image to texture
-			// TODO: render image + render passes
-			// TODO: finally render to canvas
+			composer.render();
 		},
 	};
 }

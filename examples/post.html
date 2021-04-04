@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@bieb/post - Colour Grading</title>
+	<title>@bieb/post - Bloom</title>
 
 	<link rel="stylesheet" href="styles/main.css">
 </head>
@@ -12,7 +12,7 @@
 <body>
 
 	<main class="center">
-		<h1 class="visually-hidden">@bieb/post - Colour Grading</h1>
+		<h1 class="visually-hidden">@bieb/post - Bloom</h1>
 		<div class="canvas-container">
 			<canvas id="canvas"></canvas>
 		</div>
@@ -32,10 +32,7 @@
 		canvas.height = canvasSize;
 		canvas.width = canvasSize;
 
-		canvas.style.height = `${canvasSize / pixelRatio}px`;
-		canvas.style.width = `${canvasSize / pixelRatio}px`;
-
-		const boxSize = canvasSize / 3;
+		const boxSize = canvasSize;
 		const boxColors = [
 			'#f00',
 			'#0f0',
@@ -45,33 +42,75 @@
 		const boxCanvas = Box.create([0, 0], [canvasSize, canvasSize]);
 		const canvasCenter = Vector.mix(boxCanvas.min, boxCanvas.max, 0.5);
 
+		const boxSmall = [0.25 * boxSize, 0.25 * boxSize];
 		const boxCount = 3;
 
-		const post = Post.createPostProcess();
+		const post = Post.createPostProcess({
+			sourceCanvas: canvas,
+		});
 
-		post.add();
+		canvas.replaceWith(post.canvas);
+
+		const halftonePass = post.add(Post.createHalftonePass({
+			radius: 32,
+		}));
+
+		post.add(Post.createShaderPass({
+			fragmentShader: `
+				uniform sampler2D tDiffuse;
+
+				varying vec2 vUv;
+
+				void main() {
+					vec2 coord = mix(vUv, vec2(1.0, 1.0) - vUv, step(vUv.x, 0.5));
+
+					gl_FragColor = texture2D(tDiffuse, coord);
+				}
+			`,
+		}));
+
+		post.add(Post.createUnrealBloomPass({
+			strength: 0.5,
+		}));
 
 		const render = () => {
 			const time = Date.now() / 1000;
 
-			context.fillStyle = 'black';
+			context.fillStyle = 'white';
 			context.fillRect(0, 0, canvasSize, canvasSize);
 
 			for (let i = 0; i < boxCount; i++) {
 				const t = i / boxCount;
 				const [x, y] = Vector.subtract(
-					Vector.add(canvasCenter, Vector
-						.fromPolar(2 * Math.PI * (time / 8 + t), canvasSize / 5)),
+					Vector.add(canvasCenter, Vector.fromPolar(2 * Math.PI * (time / 8 + t), canvasSize / 2)),
 					Vector.multiplyScalar([boxSize, boxSize], 0.5),
 				);
 
 				context.fillStyle = boxColors[i];
 				context.fillRect(x, y, boxSize, boxSize);
-
-				post.render(canvas);
-
-				canvas.drawImage(post.canvas, 0, 0);
 			}
+
+			context.fillStyle = 'black';
+			context.fillRect(
+				...Vector.subtract(
+						Vector.subtract(canvasCenter, Vector.multiplyScalar(boxSmall, 0.5)),
+						[boxSize / 16, boxSize / 16],
+				),
+				...boxSmall,
+			);
+
+			context.fillStyle = 'white';
+			context.fillRect(
+				...Vector.add(
+						Vector.subtract(canvasCenter, Vector.multiplyScalar(boxSmall, 0.5)),
+						[boxSize / 16, boxSize / 16],
+				),
+				...boxSmall,
+			);
+
+			halftonePass.uniforms.radius.value = 16 + 32 * (0.5 * (Math.sin(time) + 1));
+
+			post.render();
 		};
 
 		const update = () => {

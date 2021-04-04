@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import glob from 'globby';
 import path from 'path';
 import slash from 'slash';
@@ -21,6 +22,7 @@ export default function createRollupConfig(packageDirectory) {
 		output: [{
 			dir: 'lib',
 			entryFileNames: '[name].cjs.js',
+			exports: 'auto',
 			format: 'cjs',
 			sourcemap: true,
 		}, {
