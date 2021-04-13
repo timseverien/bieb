@@ -1,18 +1,14 @@
 import assertNumber from '@bieb/core/src/assertNumber';
+import mixNumber from '@bieb/math/src/mix';
 
 import assertVectorMany from './assertVectorMany';
 import componentWise from './componentWise';
-
-function createComponentMixer(t) {
-	// TODO: Implement linear interpolation in math package
-	return componentWise((a, b) => a + t * (b - a));
-}
 
 export default function mix(a, b, t) {
 	assertVectorMany(a, b);
 	assertNumber(t);
 
-	const mixComponent = createComponentMixer(t);
+	const mixComponent = componentWise((start, end) => mixNumber(start, end, t));
 
 	return mixComponent(a, b);
 }
