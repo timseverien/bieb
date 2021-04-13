@@ -1,4 +1,4 @@
-export const PI = Math.PI;
+export const { PI } = Math;
 export const TAU = 2 * PI;
 
 export { default as createMap } from './createMap';
