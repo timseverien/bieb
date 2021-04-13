@@ -1,6 +1,6 @@
 {
   "name": "@bieb/math",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Generic stuff for @bieb",
   "keywords": [],
   "author": "Tim Severien <timseverien@gmail.com>",
@@ -30,6 +30,6 @@
     "url": "https://github.com/timseverien/bieb/issues"
   },
   "dependencies": {
-    "@bieb/core": "^1.0.0"
+    "@bieb/core": "^1.2.0"
   }
 }
