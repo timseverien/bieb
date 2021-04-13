@@ -8,7 +8,7 @@
     "webgl"
   ],
   "author": "Tim Severien <timseverien@gmail.com>",
-  "homepage": "https://github.com/timseverien/bieb/blob/packages/vector/README.md",
+  "homepage": "https://github.com/timseverien/bieb/blob/packages/post/README.md",
   "license": "MIT",
   "main": "lib/post.cjs.js",
   "umd:main": "lib/post.umd.js",
