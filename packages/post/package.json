@@ -1,6 +1,6 @@
 {
   "name": "@bieb/post",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "WebGL post-processing for lazy people",
   "keywords": [
     "post-processing",
