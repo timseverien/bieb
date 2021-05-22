@@ -7,6 +7,7 @@
 | Package | Description |
 | ------- | ----------- |
 | [@biep/box](./packages/box) | Math with boxes |
+| [@biep/post](./packages/post) | WebGL post processing in a separate WebGL context (useful for 2D canvas art) |
 | [@biep/vector](./packages/vector) | Vector math |
 
 ## Rationale
